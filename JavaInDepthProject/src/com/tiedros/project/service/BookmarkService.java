@@ -4,6 +4,8 @@ import com.tiedros.project.dao.BookmarkDAO;
 import com.tiedros.project.entity.Book;
 import com.tiedros.project.entity.Bookmark;
 import com.tiedros.project.entity.Movie;
+import com.tiedros.project.entity.User;
+import com.tiedros.project.entity.UserBookmark;
 import com.tiedros.project.entity.WebLink;
 
 public class BookmarkService {
@@ -68,5 +70,14 @@ public 	Book createBook(long id,String title,String profileUrl,int publicationYe
 	
 	public Bookmark[][] getBookmarks(){
 		return dao.getBookmarks();
+	}
+
+	public void saveUserBookmark(User user, Bookmark bookmark) {
+		UserBookmark userBookmark=new UserBookmark();
+		userBookmark.setUser(user);
+		userBookmark.setBookmark(bookmark);
+		
+		dao.saveUserBookmark(userBookmark);
+		
 	}
 }

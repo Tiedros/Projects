@@ -12,15 +12,15 @@ import com.tiedros.project.service.UserService;
 
 public class DataStore {
 
-	private static final int USER_BOOKMARK_LIMIT = 5;
-	private static final int BOOKMARK_COUNT_PER_TYPE = 5;
-	private static final int BOOKMARK_TYPES_COUNT = 3;
-	private static final int TOTAL_USER_COUNT = 5;
+	public static final int USER_BOOKMARK_LIMIT = 5;
+	public static final int BOOKMARK_COUNT_PER_TYPE = 5;
+	public static final int BOOKMARK_TYPES_COUNT = 3;
+	public static final int TOTAL_USER_COUNT = 5;
 
 	private static User[] users = new User[TOTAL_USER_COUNT];
 	private static Bookmark[][] bookmarks = new Bookmark[BOOKMARK_TYPES_COUNT][BOOKMARK_COUNT_PER_TYPE];
 	private static UserBookmark[] userBookmark = new UserBookmark[TOTAL_USER_COUNT * USER_BOOKMARK_LIMIT];
-
+	private static int bookmarkIndex;
 	public static void loadData() {
 		loadUsers();
 		loadWebLinks();
@@ -89,6 +89,15 @@ public class DataStore {
 
 	public static UserBookmark[] getUserBookmark() {
 		return userBookmark;
+	}
+
+
+
+
+
+	public static void add(UserBookmark userBookmark2) {
+	userBookmark[bookmarkIndex++] = userBookmark2;	
+		
 	}
 
 
