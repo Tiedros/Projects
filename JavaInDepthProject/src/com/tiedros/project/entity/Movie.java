@@ -2,6 +2,8 @@ package com.tiedros.project.entity;
 
 import java.util.Arrays;
 
+import com.tiedros.project.constants.MovieGenre;
+
 public class Movie extends Bookmark {
 	
 	private int releaseYear;
@@ -67,6 +69,14 @@ public class Movie extends Bookmark {
 	public String toString() {
 		return "Movie [releaseYear=" + releaseYear + ", cast=" + Arrays.toString(cast) + ", directors="
 				+ Arrays.toString(directors) + ", genre=" + genre + ", imdbRating=" + imdbRating + "]";
+	}
+
+	@Override
+	public boolean isKidFriendlyEligible() {
+		if(getGenre().equals(MovieGenre.HORROR) || getGenre().equals(MovieGenre.THRILLERS)) {
+			return false;
+		}
+		return true;
 	}
 	
 	

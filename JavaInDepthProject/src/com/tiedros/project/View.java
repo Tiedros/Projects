@@ -1,12 +1,73 @@
 package com.tiedros.project;
 
+import com.tiedros.project.constants.KidFriendlyStatus;
+import com.tiedros.project.constants.UserType;
 import com.tiedros.project.controller.BookmarkController;
 import com.tiedros.project.entity.Bookmark;
 import com.tiedros.project.entity.User;
+import com.tiedros.project.partner.Shareable;
 
 public class View {
+	
+	
+	public static void browse(User user,Bookmark [][] bookmarks) {
+		System.out.println("\n "+ user.getEmail() +" is browsing items ....");
+		
+		
+		int bookmarkCount=0;
+		for(Bookmark[] bookmarkList:bookmarks) {
+			for(Bookmark bookmark:bookmarkList) {
+				//Bookmarking!!
+				if(bookmarkCount <DataStore.USER_BOOKMARK_LIMIT) {
+					boolean isBookmarked=getBookmarkDecision(bookmark);
+					if(isBookmarked) {
+						bookmarkCount++;
+						BookmarkController.getInstance().saveUserBookmark(user,bookmark);
+						System.out.println("New Item bookarked "+ bookmark);
+					}
+				}
+				// Mark as Kid-friendly
+				if(user.getUserType().equals(UserType.EDITOR)|| user.getUserType().equals(UserType.CHIEF_EDITOR)) {
+					if(bookmark.isKidFriendlyEligible() && bookmark.getKidFriendlyStatus().equals(KidFriendlyStatus.UNKNOWN)) {
+						String kidFriendlyStatus=getKidFriendlyStatusDecision(bookmark);
+					if(!kidFriendlyStatus.equals(KidFriendlyStatus.UNKNOWN)) {
+						BookmarkController.getInstance().setKidFriendlyStatus(user,kidFriendlyStatus,bookmark);
+						}
+					}
+					// Sharing 
+					if(bookmark.getKidFriendlyStatus().equals(KidFriendlyStatus.APROVED) && bookmark instanceof Shareable) {
+						
+						boolean isShare=getShareDecision();
+						if(isShare) {
+							BookmarkController.getInstance().share(user,bookmark);
+						}
+					}
+					
+				}
+			}
+		}
+		
+		
+		
+	}
+	// TODO: Below method simulate user input. After IO, we take input via console.
+	private static boolean getShareDecision() {
+		return Math.random() < 0.5 ? true:false;
+		
+	}
 
-	public static void bookmark(User user,Bookmark [][] bookmarks) {
+	private static String  getKidFriendlyStatusDecision(Bookmark bookmark) {
+		return Math.random() < 0.4 ? KidFriendlyStatus.APROVED :
+			(Math.random() >=0.4 && Math.random() <0.8) ? KidFriendlyStatus.REJECTED:KidFriendlyStatus.UNKNOWN;
+		
+	}
+
+	private static boolean getBookmarkDecision(Bookmark bookmark) {
+		return Math.random()<0.5?true:false;
+		
+	}
+
+	/*public static void bookmark(User user,Bookmark [][] bookmarks) {
 		System.out.println("\n "+ user.getEmail() +" is bookmarking");
 		
 		for(int i=0;i<DataStore.USER_BOOKMARK_LIMIT;i++) {
@@ -20,5 +81,5 @@ public class View {
 		
 			System.out.println(bookmark);
 		}
-	}
+	}*/
 }
