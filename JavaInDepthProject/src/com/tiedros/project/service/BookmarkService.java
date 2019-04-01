@@ -1,5 +1,8 @@
 package com.tiedros.project.service;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+
 import com.tiedros.project.dao.BookmarkDAO;
 import com.tiedros.project.entity.Book;
 import com.tiedros.project.entity.Bookmark;
@@ -7,6 +10,8 @@ import com.tiedros.project.entity.Movie;
 import com.tiedros.project.entity.User;
 import com.tiedros.project.entity.UserBookmark;
 import com.tiedros.project.entity.WebLink;
+import com.tiedros.project.util.HttpConnect;
+import com.tiedros.project.util.IOUtil;
 
 public class BookmarkService {
 
@@ -76,6 +81,24 @@ public 	Book createBook(long id,String title,String profileUrl,int publicationYe
 		UserBookmark userBookmark=new UserBookmark();
 		userBookmark.setUser(user);
 		userBookmark.setBookmark(bookmark);
+		
+		if (bookmark instanceof WebLink) {
+			try {				
+				String url = ((WebLink)bookmark).getUrl();
+				if (!url.endsWith(".pdf")) {
+					String webpage = HttpConnect.download(((WebLink)bookmark).getUrl());
+					if (webpage != null) {
+						IOUtil.write(webpage, bookmark.getId());
+					}
+				}				
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 		dao.saveUserBookmark(userBookmark);
 		
