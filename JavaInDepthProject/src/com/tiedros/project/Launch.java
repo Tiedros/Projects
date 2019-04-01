@@ -1,5 +1,7 @@
 package com.tiedros.project;
 
+import java.util.List;
+
 import com.tiedros.project.entity.Bookmark;
 import com.tiedros.project.entity.User;
 import com.tiedros.project.service.BookmarkService;
@@ -7,15 +9,15 @@ import com.tiedros.project.service.UserService;
 
 public class Launch {
 
-	private static User [] users;
-	private static Bookmark[][] bookmarks;
+	private static List<User> users;
+	private static List<List<Bookmark>> bookmarks;
 	
 	private static void loadData() {
 		
 		System.out.println("1. Loading data ...");
 		DataStore.loadData();
 		
-		users= UserService.getInstance().getUsers();
+		users=UserService.getInstance().getUsers();
 		bookmarks=BookmarkService.getInstance().getBookmarks();
 		
 		//System.out.println(" Printing Data ...");
@@ -25,7 +27,7 @@ public class Launch {
 	}
 
 	private static void printBookmarkData() {
-		for(Bookmark [] bookmarkList : bookmarks) {
+		for(List<Bookmark> bookmarkList : bookmarks) {
 			for(Bookmark bookmark:bookmarkList) {
 				System.out.println(bookmark);
 			}

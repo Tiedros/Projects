@@ -1,5 +1,7 @@
 package com.tiedros.project;
 
+import java.util.List;
+
 import com.tiedros.project.constants.KidFriendlyStatus;
 import com.tiedros.project.constants.UserType;
 import com.tiedros.project.controller.BookmarkController;
@@ -10,22 +12,22 @@ import com.tiedros.project.partner.Shareable;
 public class View {
 	
 	
-	public static void browse(User user,Bookmark [][] bookmarks) {
+	public static void browse(User user,List<List<Bookmark>> bookmarks) {
 		System.out.println("\n "+ user.getEmail() +" is browsing items ....");
 		
 		
-		int bookmarkCount=0;
-		for(Bookmark[] bookmarkList:bookmarks) {
+		//int bookmarkCount=0;
+		for(List<Bookmark> bookmarkList:bookmarks) {
 			for(Bookmark bookmark:bookmarkList) {
 				//Bookmarking!!
-				if(bookmarkCount <DataStore.USER_BOOKMARK_LIMIT) {
+				//if(bookmarkCount <DataStore.USER_BOOKMARK_LIMIT) {
 					boolean isBookmarked=getBookmarkDecision(bookmark);
 					if(isBookmarked) {
-						bookmarkCount++;
+						//bookmarkCount++;
 						BookmarkController.getInstance().saveUserBookmark(user,bookmark);
 						System.out.println("New Item bookarked "+ bookmark);
 					}
-				}
+				//}
 				// Mark as Kid-friendly
 				if(user.getUserType().equals(UserType.EDITOR)|| user.getUserType().equals(UserType.CHIEF_EDITOR)) {
 					if(bookmark.isKidFriendlyEligible() && bookmark.getKidFriendlyStatus().equals(KidFriendlyStatus.UNKNOWN)) {

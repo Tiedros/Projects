@@ -2,6 +2,7 @@ package com.tiedros.project.service;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.util.List;
 
 import com.tiedros.project.dao.BookmarkDAO;
 import com.tiedros.project.entity.Book;
@@ -73,7 +74,7 @@ public 	Book createBook(long id,String title,String profileUrl,int publicationYe
 	return movie;
 	}
 	
-	public Bookmark[][] getBookmarks(){
+	public List<List<Bookmark>> getBookmarks(){
 		return dao.getBookmarks();
 	}
 

@@ -1,5 +1,7 @@
 package com.tiedros.project.service;
 
+import java.util.List;
+
 import com.tiedros.project.dao.UserDAO;
 import com.tiedros.project.entity.User;
 
@@ -31,7 +33,7 @@ public class UserService {
 		return user;
 	}
 	
-	public User[] getUsers() {
+	public List<User> getUsers() {
 		return dao.getUsers();
 	}
 	
