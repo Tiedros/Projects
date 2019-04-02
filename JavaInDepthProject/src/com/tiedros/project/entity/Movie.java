@@ -2,21 +2,21 @@ package com.tiedros.project.entity;
 
 import java.util.Arrays;
 
-import com.tiedros.project.constants.MovieGenre;
+import com.tiedros.project.enums.MovieGenre;
 
 public class Movie extends Bookmark {
 	
 	private int releaseYear;
 	private String [] cast;
 	private String [] directors;
-	private String genre;
+	private MovieGenre genre;
 	private double imdbRating;
 	
 	public Movie() {
 		
 	}
 
-	public Movie(int releaseYear, String[] cast, String[] directors, String genre, double imdbRating) {
+	public Movie(int releaseYear, String[] cast, String[] directors, MovieGenre genre, double imdbRating) {
 		super();
 		this.releaseYear = releaseYear;
 		this.cast = cast;
@@ -49,11 +49,11 @@ public class Movie extends Bookmark {
 		this.directors = directors;
 	}
 
-	public String getGenre() {
+	public MovieGenre getGenre() {
 		return genre;
 	}
 
-	public void setGenre(String genre) {
+	public void setGenre(MovieGenre genre) {
 		this.genre = genre;
 	}
 

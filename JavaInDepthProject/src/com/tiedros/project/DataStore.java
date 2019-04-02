@@ -3,13 +3,13 @@ package com.tiedros.project;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.tiedros.project.constants.BookGenre;
-import com.tiedros.project.constants.Gender;
-import com.tiedros.project.constants.MovieGenre;
-import com.tiedros.project.constants.UserType;
 import com.tiedros.project.entity.Bookmark;
 import com.tiedros.project.entity.User;
 import com.tiedros.project.entity.UserBookmark;
+import com.tiedros.project.enums.BookGenre;
+import com.tiedros.project.enums.Gender;
+import com.tiedros.project.enums.MovieGenre;
+import com.tiedros.project.enums.UserType;
 import com.tiedros.project.service.BookmarkService;
 import com.tiedros.project.service.UserService;
 import com.tiedros.project.util.IOUtil;
@@ -45,7 +45,7 @@ public class DataStore {
     	for (String row : data) {
     		String[] values = row.split("\t");
     		
-    		int gender = Gender.MALE;
+    		Gender gender = Gender.MALE;
     		if (values[5].equals("f")) {
     			gender = Gender.FEMALE;
     		} else if (values[5].equals("t")) {
@@ -77,7 +77,7 @@ public class DataStore {
     		String[] values = row.split("\t");
     		String[] cast = values[3].split(",");
     		String[] directors = values[4].split(",");
-    		bookmarkList.add(BookmarkService.getInstance().createMovie(Long.parseLong(values[0]), values[1], "", Integer.parseInt(values[2]), cast, directors, values[5], Double.parseDouble(values[6])/*, values[7]*/));
+    		bookmarkList.add(BookmarkService.getInstance().createMovie(Long.parseLong(values[0]), values[1], "", Integer.parseInt(values[2]), cast, directors, MovieGenre.valueOf(values[5]), Double.parseDouble(values[6])/*, values[7]*/));
     	}
     	bookmarks.add(bookmarkList);	
 	}
@@ -91,7 +91,7 @@ public class DataStore {
     	for (String row : data) {
     		String[] values = row.split("\t");
     		String[] authors = values[4].split(",");
-    		bookmarkList.add(BookmarkService.getInstance().createBook(Long.parseLong(values[0]), values[1],"", Integer.parseInt(values[2]), values[3], authors, values[5], Double.parseDouble(values[6])/*, values[7]*/));
+    		bookmarkList.add(BookmarkService.getInstance().createBook(Long.parseLong(values[0]), values[1],"", Integer.parseInt(values[2]), values[3], authors, BookGenre.valueOf(values[5]), Double.parseDouble(values[6])/*, values[7]*/));
     	}
     	bookmarks.add(bookmarkList);	
 	}

@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import com.tiedros.project.constants.BookGenre;
+import com.tiedros.project.enums.BookGenre;
 import com.tiedros.project.service.BookmarkService;
 
 class BookTest {

@@ -1,5 +1,7 @@
 package com.tiedros.project.entity;
 
+import com.tiedros.project.enums.Gender;
+
 public class User {
 	
 	private long id;
@@ -7,7 +9,7 @@ public class User {
 	private String lastName;
 	private String email;
 	private String password;
-	private int gender;
+	private Gender gender;
 	private String userType;
 	
 	
@@ -16,7 +18,7 @@ public class User {
 	}
 
 
-	public User(long id, String firstName, String lastName, String email, String password, int gender,
+	public User(long id, String firstName, String lastName, String email, String password, Gender gender,
 			String userType) {
 		this.id = id;
 		this.firstName = firstName;
@@ -78,12 +80,12 @@ public class User {
 	}
 
 
-	public int getGender() {
+	public Gender getGender() {
 		return gender;
 	}
 
 
-	public void setGender(int gender) {
+	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
 

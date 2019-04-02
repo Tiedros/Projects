@@ -2,6 +2,7 @@ package com.tiedros.project.controller;
 
 import com.tiedros.project.entity.Bookmark;
 import com.tiedros.project.entity.User;
+import com.tiedros.project.enums.KidFriendlyStatus;
 import com.tiedros.project.service.BookmarkService;
 
 public class BookmarkController {
@@ -21,7 +22,7 @@ public class BookmarkController {
 		
 	}
 
-	public void setKidFriendlyStatus(User user, String kidFriendlyStatus, Bookmark bookmark) {
+	public void setKidFriendlyStatus(User user, KidFriendlyStatus kidFriendlyStatus, Bookmark bookmark) {
 		BookmarkService.getInstance().setKidFriendlyStatus(user,kidFriendlyStatus,bookmark);
 		
 	}

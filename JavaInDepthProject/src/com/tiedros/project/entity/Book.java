@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.tiedros.project.constants.BookGenre;
+import com.tiedros.project.enums.BookGenre;
 import com.tiedros.project.partner.Shareable;
 
 public class Book  extends  Bookmark implements Shareable{
@@ -12,7 +12,7 @@ public class Book  extends  Bookmark implements Shareable{
 	private int publicationYear;
 	private String publisher;
 	private String [] authors;
-	private String genre;
+	private BookGenre genre;
 	private double amazonRating;
 	
 	
@@ -21,7 +21,7 @@ public class Book  extends  Bookmark implements Shareable{
 	}
 
 
-	public Book(int publicationYear, String publisher, String[] authors, String genre, double amazonRating) {
+	public Book(int publicationYear, String publisher, String[] authors, BookGenre genre, double amazonRating) {
 		super();
 		this.publicationYear = publicationYear;
 		this.publisher = publisher;
@@ -61,12 +61,12 @@ public class Book  extends  Bookmark implements Shareable{
 	}
 
 
-	public String getGenre() {
+	public BookGenre getGenre() {
 		return genre;
 	}
 
 
-	public void setGenre(String genre) {
+	public void setGenre(BookGenre genre) {
 		this.genre = genre;
 	}
 

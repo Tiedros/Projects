@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import com.tiedros.project.constants.MovieGenre;
+import com.tiedros.project.enums.MovieGenre;
 import com.tiedros.project.service.BookmarkService;
 
 class MovieTest {
