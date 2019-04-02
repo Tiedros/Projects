@@ -86,6 +86,7 @@ public 	Book createBook(long id,String title,String profileUrl,int publicationYe
 		userBookmark.setUser(user);
 		userBookmark.setBookmark(bookmark);
 		
+		/*
 		if (bookmark instanceof WebLink) {
 			try {				
 				String url = ((WebLink)bookmark).getUrl();
@@ -103,7 +104,7 @@ public 	Book createBook(long id,String title,String profileUrl,int publicationYe
 				e.printStackTrace();
 			}
 		}
-		
+		*/
 		dao.saveUserBookmark(userBookmark);
 		
 	}

@@ -2,6 +2,7 @@ package com.tiedros.project;
 
 import java.util.List;
 
+import com.tiedros.project.bgjobs.WebPageDownloaderTask;
 import com.tiedros.project.entity.Bookmark;
 import com.tiedros.project.entity.User;
 import com.tiedros.project.service.BookmarkService;
@@ -57,7 +58,17 @@ public class Launch {
 	
 		loadData();
 		start();
+		
+		// background jobs
+		runDonloadJob();
 
+	}
+
+	private static void runDonloadJob() {
+		
+		WebPageDownloaderTask webPageDownloaderTask=new WebPageDownloaderTask(true);
+		(new Thread(webPageDownloaderTask)).start();
+		
 	}
 
 	
