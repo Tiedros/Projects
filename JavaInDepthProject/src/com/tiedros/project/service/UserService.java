@@ -5,6 +5,7 @@ import java.util.List;
 import com.tiedros.project.dao.UserDAO;
 import com.tiedros.project.entity.User;
 import com.tiedros.project.enums.Gender;
+import com.tiedros.project.enums.UserType;
 
 public class UserService {
 
@@ -19,7 +20,7 @@ public class UserService {
 		return userService;
 	}
 	
-	public User createUser(long id,String email, String password, String firstName, String lastName,  Gender gender, String userType) {
+	public User createUser(long id,String email, String password, String firstName, String lastName,  Gender gender, UserType userType) {
 		
 		User user=new User();
 		
