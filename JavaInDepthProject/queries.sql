@@ -155,3 +155,28 @@ SELECT table_name, engine FROM information_Schema.tables where table_schema =
 SELECT table_name, engine FROM information_Schema.tables where table_schema ='CoreJavaProject';
 DROP TABLE TestA;
 exit;*/
+
+
+
+
+
+
+
+
+/* Tables for Bookmarked data*/
+CREATE TABLE User_Book (id bigint(20) PRIMARY KEY auto_increment, user_id bigint(20) not null,book_id bigint(20) not null,FOREIGN KEY (user_id) REFERENCES User(id),FOREIGN KEY (book_id) REFERENCES Book(id));
+
+CREATE TABLE User_Movie (id bigint(20) PRIMARY KEY auto_increment,user_id bigint(20) not null,movie_id bigint(20) not null,FOREIGN KEY (user_id) REFERENCES User(id),FOREIGN KEY (movie_id) REFERENCES Movie(id));
+
+CREATE TABLE User_WebLink (id bigint(20) PRIMARY KEY auto_increment, user_id bigint(20) not null,weblink_id bigint(20) not null,FOREIGN KEY (user_id) REFERENCES User(id),FOREIGN KEY (weblink_id) REFERENCES WebLink(id));
+
+
+
+
+
+
+ALTER TABLE Book ADD COLUMN kid_friendly_marked_by bigint AFTER kid_friendly_status, ADD COLUMN shared_by bigint AFTER kid_friendly_marked_by, ADD FOREIGN KEY (kid_friendly_marked_by) REFERENCES User(id), ADD FOREIGN KEY (shared_by) REFERENCES User(id);
+
+ALTER TABLE WebLink ADD COLUMN kid_friendly_marked_by bigint AFTER kid_friendly_status, ADD COLUMN shared_by bigint AFTER kid_friendly_marked_by, ADD FOREIGN KEY (kid_friendly_marked_by) REFERENCES User(id), ADD FOREIGN KEY (shared_by) REFERENCES User(id);
+
+ALTER TABLE Movie ADD COLUMN kid_friendly_marked_by bigint AFTER kid_friendly_status, ADD FOREIGN KEY (kid_friendly_marked_by) REFERENCES User(id);

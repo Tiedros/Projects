@@ -29,7 +29,7 @@ public class View {
 					}
 				//}
 				// Mark as Kid-friendly
-				/*if(user.getUserType().equals(UserType.EDITOR)|| user.getUserType().equals(UserType.CHIEF_EDITOR)) {
+				if(user.getUserType().equals(UserType.EDITOR)|| user.getUserType().equals(UserType.CHIEF_EDITOR)) {
 					if(bookmark.isKidFriendlyEligible() && bookmark.getKidFriendlyStatus().equals(KidFriendlyStatus.UNKNOWN)) {
 						KidFriendlyStatus kidFriendlyStatus=getKidFriendlyStatusDecision(bookmark);
 					if(!kidFriendlyStatus.equals(KidFriendlyStatus.UNKNOWN)) {
@@ -45,7 +45,7 @@ public class View {
 						}
 					}
 					
-				}*/
+				}
 			}
 		}
 		
@@ -59,8 +59,9 @@ public class View {
 	}
 
 	private static KidFriendlyStatus  getKidFriendlyStatusDecision(Bookmark bookmark) {
-		return Math.random() < 0.4 ? KidFriendlyStatus.APROVED :
-			(Math.random() >=0.4 && Math.random() <0.8) ? KidFriendlyStatus.REJECTED:KidFriendlyStatus.UNKNOWN;
+		double decision=Math.random();
+		return   decision< 0.4 ? KidFriendlyStatus.APROVED :
+			(decision >=0.4 && decision <0.8) ? KidFriendlyStatus.REJECTED:KidFriendlyStatus.UNKNOWN;
 		
 	}
 

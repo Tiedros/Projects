@@ -112,6 +112,8 @@ public 	Book createBook(long id,String title,String profileUrl,int publicationYe
 	public void setKidFriendlyStatus(User user, KidFriendlyStatus kidFriendlyStatus, Bookmark bookmark) {
 		bookmark.setKidFriendlyStatus(kidFriendlyStatus);
 		bookmark.setKidFriendlyMarkedBy(user);
+		
+		dao.updateKidFriendlyStatus(bookmark);
 		System.out.println("kid-friendly status "+ kidFriendlyStatus +", Marked by "+ user.getEmail() +" ,"+ bookmark);
 	
 		
@@ -127,5 +129,6 @@ public 	Book createBook(long id,String title,String profileUrl,int publicationYe
 			 System.out.println(((WebLink)bookmark).getItemData());
 		}
 		
+		dao.sharedByInfo(bookmark);
 	}
 }
