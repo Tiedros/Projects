@@ -1,0 +1,68 @@
+package com.bookstore.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bookstore.domain.Book;
+import com.bookstore.repository.BookRespository;
+import com.bookstore.service.BookService;
+
+@Service
+public class BookserviceImpl implements BookService {
+
+	@Autowired
+	private BookRespository bookRepository;
+	
+	@Override
+	public List<Book> findAll() {
+		// TODO Auto-generated method stub
+	 List<Book> bookList= (List<Book>) bookRepository.findAll();
+		List<Book> activeBookList=new ArrayList<>();
+		
+		for(Book book:bookList) {
+			if(book.isActive()) {
+				activeBookList.add(book);
+			}
+		}
+		return activeBookList;
+	}
+
+	@Override
+	public Optional<Book> findOne(Long id) {
+		// TODO Auto-generated method stub
+		return bookRepository.findById(id);
+	}
+
+	@Override
+	public List<Book> findByCategory(String category) {
+		// TODO Auto-generated method stub
+		List<Book> bookList=bookRepository.findByCategory(category);
+		List<Book> activeBookList=new ArrayList<>();
+		
+		for(Book book:bookList) {
+			if(book.isActive()) {
+				activeBookList.add(book);
+			}
+		}
+		return activeBookList;
+	}
+
+	@Override
+	public List<Book> blurrySearch(String title) {
+		// TODO Auto-generated method stub
+		List<Book> bookList=bookRepository.findByTitleContaining(title);
+		List<Book> activeBookList=new ArrayList<>();
+		
+		for(Book book:bookList) {
+			if(book.isActive()) {
+				activeBookList.add(book);
+			}
+		}
+		return activeBookList;
+	}
+
+}
