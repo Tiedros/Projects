@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.6.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.bookstore</groupId>
-	<artifactId>bookstore</artifactId>
+	<groupId>com.adminportal</groupId>
+	<artifactId>adminportal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Bookstore</name>
-	<description>This is front end part of my Book store project</description>
+	<name>adminportal</name>
+	<description>Admin part for my bookstore  project for Spring Boot</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,9 +21,7 @@
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	</properties>
 
-	<dependencies>
-
-		<!-- Thymeleaf dependency -->
+	<dependencies><!-- Thymeleaf dependency -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -80,12 +77,12 @@
 
 
 		<!-- Mail sender api -->
-
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
 		</dependency>
+
 		<!-- Dev tools -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
