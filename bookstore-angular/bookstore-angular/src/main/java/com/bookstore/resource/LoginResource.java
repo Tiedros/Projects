@@ -41,16 +41,16 @@ public class LoginResource {
 	} 
 	
 	@RequestMapping("/checkSession")
-	public ResponseEntity checkSession() {
+	public ResponseEntity<String> checkSession() {
 		LOG.info("******** IN Side Method {} ********","checkSession");
-		return new ResponseEntity(HttpStatus.OK);
+		return new ResponseEntity<String>("Session Active!",HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/user/logout", method=RequestMethod.POST)
-	public ResponseEntity logout() {
+	public ResponseEntity<String> logout() {
 		LOG.info("******** IN Side Method {} ********","token");
 		SecurityContextHolder.clearContext();
-		return new ResponseEntity(HttpStatus.OK);
+		return new ResponseEntity<String>("Logout Successfully!",HttpStatus.OK);
 	}
 	
 	
