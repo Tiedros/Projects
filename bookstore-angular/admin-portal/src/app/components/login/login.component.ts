@@ -10,17 +10,17 @@ export class LoginComponent implements OnInit {
 
 private credential={'username':'','password':''};
 private loggedIn=false;
-private response:any;
+
   constructor(private loginService: LoginService) { }
 
 onSubmit(){
 	this.loginService.sendCredential(this.credential.username,this.credential.password).subscribe(
 
 			res =>{
-					this.response=res;
-					console.log(this.response.token);
+					let response:any=res;
+					console.log(response.token);
 					console.log(res);
-					localStorage.setItem("xAuthToken",this.response.token);
+					localStorage.setItem("xAuthToken",response.token);
 					this.loggedIn=true;
 					location.reload();
 			},

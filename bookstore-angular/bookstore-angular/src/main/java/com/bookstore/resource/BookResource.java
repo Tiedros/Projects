@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,7 +41,7 @@ private static final Logger LOG=LoggerFactory.getLogger(BookResource.class);
 	}
 	
 	@RequestMapping(value="/add/image",method=RequestMethod.POST)
-	public ResponseEntity<String> upload(
+	public ResponseEntity upload(
 				@RequestParam("id") Long id,
 				HttpServletResponse response,HttpServletRequest request
 			) {
@@ -56,11 +57,16 @@ private static final Logger LOG=LoggerFactory.getLogger(BookResource.class);
 			BufferedOutputStream stream=new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static/image/book/"+fileName)));
 			stream.write(bytes);
 			stream.close();
-			return new ResponseEntity<String>("Upload Success!",HttpStatus.OK);
+			return new ResponseEntity(HttpStatus.OK);
 		}catch(Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<String>("Upload failed!",HttpStatus.BAD_REQUEST);
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
 		}
+	}
+	
+	@RequestMapping("/bookList")
+	public List<Book> getBookList(){
+		return bookService.findAll();
 	}
 
 }
