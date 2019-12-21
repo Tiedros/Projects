@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatListModule} from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule,
  		 MatButtonModule,
@@ -21,6 +22,7 @@ import  {LoginService} from './services/login.service';
 import {AddBookService} from './services/add-book.service';
 import {UploadImageService} from './services/upload-image.service';
 import {GetBookListService} from './services/get-book-list.service';
+import {GetBookService} from './services/get-book.service';
 
 
 // Components Import
@@ -57,13 +59,15 @@ import { ViewBookComponent } from './components/view-book/view-book.component';
         MatGridListModule,
         FormsModule,
         MatSlideToggleModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        MatListModule
   ],
   providers: [
       LoginService,
       AddBookService,
       UploadImageService,
-      GetBookListService
+      GetBookListService,
+      GetBookService
   ],
   bootstrap: [AppComponent]
 })
