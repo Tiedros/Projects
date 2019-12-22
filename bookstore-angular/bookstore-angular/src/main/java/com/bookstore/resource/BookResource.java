@@ -3,6 +3,7 @@ package com.bookstore.resource;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Iterator;
@@ -112,4 +113,16 @@ private static final Logger LOG=LoggerFactory.getLogger(BookResource.class);
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
 }
+	@RequestMapping(value="/remove",method=RequestMethod.POST)
+	public ResponseEntity remove(@RequestBody String id) throws IOException{
+		bookService.removeOne(Long.parseLong(id));
+		String fileName=id+".png";
+		
+		Files.delete(Paths.get("src/main/resources/static/image/book/"+fileName));
+		return new ResponseEntity(HttpStatus.OK);
+		
+	}
+	
+	
+	
 }
