@@ -10,15 +10,33 @@ import { MatInputModule,
  		 MatMenuModule,
  		 MatToolbarModule, 
  		 MatSelectModule, 
- 		 MatIconModule } from '@angular/material';
+ 		 MatIconModule,
+      MatTabsModule } from '@angular/material';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {routing} from './app.routing';
+import { FormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
-// Component Import
 
+// Component Import
+import { HomeComponent } from './components/home/home.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { MyAccountComponent } from './components/my-account/my-account.component';
 // service Import
+import {LoginService} from './services/login.service';
+import {UserService} from './services/user.service';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import {PaymentService} from './services/payment.service';
+import {ShippingService} from './services/shipping.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    NavBarComponent,
+    MyAccountComponent,
+    MyProfileComponent
   ],
   imports: [
 	     BrowserModule,
@@ -28,9 +46,20 @@ import 'hammerjs';
 		 MatMenuModule,
 		 MatToolbarModule, 
 		 MatSelectModule, 
-		 MatIconModule
+		 MatIconModule,
+		 routing,
+		 FormsModule,
+     HttpClientModule,
+     MatTabsModule,
+     BrowserAnimationsModule,
+     MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [
+  		LoginService,
+  		UserService,
+      PaymentService,
+      ShippingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

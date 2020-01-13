@@ -1,0 +1,34 @@
+<div class="page-top" style="width: 100%; height: 20px; background-color: #f46b42" >
+	
+</div>
+<nav class="navbar navbar-expand-lg bg-dark text-white">
+  <a class="navbar-brand" routerLink="/home">Tiedros' Book Store</a>
+  
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a mat-button class="nav-link" routerLink="/bookList">Book </a>
+      </li>
+    
+    <form class="form-inline ">
+      <input class="form-control " type="text" name="searchByTitle" [(ngModel)]="keyword" placeholder="Book Title" >
+      <button class="btn btn-outline-success" type="submit" >Search</button>
+    </form>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+				<li *ngIf="!loggedIn">
+					<a mat-button routerLink="/myAccount">MY ACCOUNT</a>
+				</li>
+				<li *ngIf="loggedIn">
+					<a mat-button routerLink="/shoppingCart">SHOPPING CART</a>
+				</li>
+				<li *ngIf="loggedIn">
+					<a mat-button routerLink="/myProfile">MY PROFILE</a>
+				</li>
+				<li *ngIf="loggedIn">
+					<a mat-button (click)="logout()">LOGOUT</a>
+				</li>
+			</ul>
+  </div>
+</nav>

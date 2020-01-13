@@ -34,13 +34,13 @@ import com.bookstore.service.BookService;
 @RequestMapping("/book")
 public class BookResource {
 	
-private static final Logger LOG=LoggerFactory.getLogger(BookResource.class);
+private static final Logger LOG=LoggerFactory.getLogger(BookResource.class.getName());
 	@Autowired
 	private BookService bookService;
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public Book addBookPost(@RequestBody Book book) {
-		LOG.info("******** IN Side Method {} ********","addBookPost");
+		LOG.info("******** IN Side Method {} ********","addBookPost" );
 		return bookService.save(book);
 	}
 	

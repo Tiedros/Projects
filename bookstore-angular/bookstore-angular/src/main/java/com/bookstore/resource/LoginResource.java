@@ -22,7 +22,7 @@ import com.bookstore.service.UserService;
 public class LoginResource {
 
 	
-	private static final Logger LOG = LoggerFactory.getLogger(LoginResource.class);
+	private static final Logger LOG=LoggerFactory.getLogger(LoginResource.class.getName());
 
 	@Autowired
 	private UserService userService;
